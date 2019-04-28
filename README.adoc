@@ -1,0 +1,16 @@
+# Karaf fearture JDBC
+
+Externsion to karaf which adds JBC Driver bundles to karaf features.
+
+## Features:
+
+- jdbc-h2 1.4.199
+- jdbc-postgresql 42.5.5
+- jdbc-oracle_11_2 11.2.0.4
+- jdbc-oracle_12_1 12.1.0.1
+- jdbc-oracle_12_2 12.2.0.1
+- jdbc-oracle_18_3 18.3.0.0
+- jdbc-oracle_18.3.0.0
+- jdbc-hsqldb_2_3 2.3.6
+- jdbc-hsqldb_2_4 2.4.1
+- jdbc-hsqldb 2.4.1
