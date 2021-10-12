@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.blackbelt.karaf.features</groupId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <artifactId>jdbc</artifactId>
     <name>JDBC Drivers karaf feature project</name>
@@ -101,51 +101,6 @@
         </profile>
         
         <profile>
-            <id>release-github</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>de.jutzig</groupId>
-                        <artifactId>github-release-plugin</artifactId>
-                        <version>1.3.0</version>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <id>release-to-github</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>release</goal>
-                                </goals>
-                                <configuration>
-                                    <repositoryId>https://github.com/BlackBeltTechnology/karaf-features-${project.artifactId}.git</repositoryId>
-                                    <description>Branch: ${env.WERCKER_GIT_BRANCH} Wercker: ${env.WERCKER_RUN_URL}</description>
-                                    <releaseName>${project.version}</releaseName>
-                                    <deleteRelease>true</deleteRelease>
-                                    <tag>${project.version}</tag>
-                                    <fileSets>
-                                        <fileSet>
-                                            <directory>features/target/feature/</directory>
-                                            <includes>
-                                                <include>feature.xml</include>
-                                            </includes>
-                                        </fileSet>
-                                        <fileSet>
-                                            <directory>kar/target</directory>
-                                            <includes>
-                                                <include>*.kar</include>
-                                            </includes>
-                                        </fileSet>
-                                    </fileSets>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        
-        <profile>
             <id>sign-artifacts</id>
             <build>
                 <plugins>
@@ -234,36 +189,19 @@
             </distributionManagement>
         </profile>
 
-        <profile>
-            <id>release-blackbelt</id>
-            <!-- Community edition does not support staging
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>blackbelt-nexus-distribution</serverId>
-                            <nexusUrl>https://nexus.blackbelt.cloud/repository/maven-judo-snapshot/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            -->
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>blackbelt-nexus-distribution</id>
-                    <url>https://nexus.blackbelt.cloud/repository/maven-judo-snapshot/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>blackbelt-nexus-distribution</id>
-                    <url>https://nexus.blackbelt.cloud/repository/maven-judo-snapshot/</url>
-                </repository>
-            </distributionManagement>
-        </profile>
+		<profile>
+			<id>release-judong</id>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>judong-nexus-distribution</id>
+					<url>${env.JUDONG_MAVEN_UPSTREAM_SNAPSHOT}</url>
+				</snapshotRepository>
+				<repository>
+					<id>judong-nexus-distribution</id>
+					<url>${env.JUDONG_MAVEN_UPSTREAM_RELEASE}</url>
+				</repository>
+			</distributionManagement>
+		</profile>
         
         <profile>
             <id>release-dummy</id>
@@ -279,6 +217,46 @@
             </distributionManagement>
         </profile>
 
+        <profile>
+            <id>generate-github-release-body</id>
+            <activation>
+                <property>
+                    <name>github_release</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>template-github-release-body</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${basedir}/.release</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}</directory>
+                                            <filtering>true</filtering>
+                                            <includes>
+                                                <include>.releasetemplate</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+  
     </profiles>
 
 

@@ -5,7 +5,7 @@
     <parent>
         <groupId>hu.blackbelt.karaf.features</groupId>
         <artifactId>jdbc</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>jdbc-features</artifactId>
@@ -82,6 +82,8 @@
                                 <feature>jdbc-oracle</feature>
                                 <feature>jdbc-hsqldb_2_3</feature>
                                 <feature>jdbc-hsqldb_2_4</feature>
+                                <feature>jdbc-hsqldb_2_5</feature>
+                                <feature>jdbc-hsqldb_2_6</feature>
                                 <feature>jdbc-hsqldb</feature>
                             </features>
                         </configuration>

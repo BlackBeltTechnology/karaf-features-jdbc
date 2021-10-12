@@ -4,14 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.5.0 http://karaf.apache.org/xmlns/features/v1.5.0">
 
-    <feature name="jdbc-h2" version="1.4.199" description="H2 JDBC Driver" install="false">
-        <bundle>mvn:com.h2database/h2/1.4.199</bundle>
+    <feature name="jdbc-h2" version="1.4.200" description="H2 JDBC Driver" install="false">
+        <bundle>mvn:com.h2database/h2/1.4.200</bundle>
     </feature>
 
-    <feature name="jdbc-postgresql" version="42.2.5" description="PostgreSQL JDBC Driver" install="false">
+    <feature name="jdbc-postgresql" version="42.2.24" description="PostgreSQL JDBC Driver" install="false">
         <feature dependency="true">wrap</feature>
         <feature dependency="true">transaction-api</feature>
-        <bundle><![CDATA[wrap:mvn:org.postgresql/postgresql/42.2.5$Bundle-Name=Postgresql Driver&Bundle-SymbolicName=org.postgresql&Bundle-Version=42.2.5&Export-Package=org.postgresql.*]]></bundle>
+        <bundle><![CDATA[wrap:mvn:org.postgresql/postgresql/42.2.24$Bundle-Name=Postgresql Driver&Bundle-SymbolicName=org.postgresql&Bundle-Version=42.2.24&Export-Package=org.postgresql.*]]></bundle>
     </feature>
 
     <feature name="jdbc-oracle_11_2" version="11.2.0.4" description="Oracle 11.2 JDBC Driver" install="false">
@@ -46,8 +46,16 @@
         <bundle>mvn:org.hsqldb/hsqldb/2.4.1</bundle>
     </feature>
 
-    <feature name="jdbc-hsqldb" version="2.4.1" description="HSQLDB 2.4 JDBC Driver" install="false">
-        <feature>jdbc-hsqldb_2_4</feature>
+    <feature name="jdbc-hsqldb_2_5" version="2.5.2" description="HSQLDB 2.4 JDBC Driver" install="false">
+        <bundle>mvn:org.hsqldb/hsqldb/2.5.2</bundle>
+    </feature>
+
+    <feature name="jdbc-hsqldb_2_6" version="2.6.0" description="HSQLDB 2.4 JDBC Driver" install="false">
+        <bundle>mvn:org.hsqldb/hsqldb/2.5.2</bundle>
+    </feature>
+
+    <feature name="jdbc-hsqldb" version="2.6.0" description="HSQLDB 2.4 JDBC Driver" install="false">
+        <feature>jdbc-hsqldb_2_6</feature>
     </feature>
 
 </features>
