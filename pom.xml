@@ -282,7 +282,6 @@
         </profile>
     </profiles>
 
-
     <repositories>
         <repository>
             <id>maven.oracle.com</id>
