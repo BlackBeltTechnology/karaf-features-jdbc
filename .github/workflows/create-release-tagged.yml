@@ -54,7 +54,7 @@ jobs:
           tag-name: 'latest_${{ steps.version.outputs.branch }}'
 
       - name: Delete create-release tag
-        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           tag_name: 'create-release/${{ steps.version.outputs.version }}'
         env:

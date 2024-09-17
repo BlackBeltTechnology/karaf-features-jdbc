@@ -53,7 +53,7 @@ jobs:
           method: squash
 
       - name: Delete merge-pr tag
-        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        uses: dev-drprasad/delete-tag-and-release@v0.2.1
         with:
           tag_name: 'merge-pr/${{ steps.pr.outputs.pr }}'
         env:
