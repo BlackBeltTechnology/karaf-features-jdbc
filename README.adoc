@@ -5,7 +5,7 @@ Externsion to karaf which adds JBC Driver bundles to karaf features.
 ## Features:
 
 - jdbc-h2 1.4.199
-- jdbc-postgresql 42.5.5
+- jdbc-postgresql 42.7.4
 - jdbc-oracle_11_2 11.2.0.4
 - jdbc-oracle_12_1 12.1.0.1
 - jdbc-oracle_12_2 12.2.0.1
